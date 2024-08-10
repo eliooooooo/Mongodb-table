@@ -1,0 +1,5 @@
+[] Initialisation de la base de données
+[] Communication avec la base de donnée
+[] Génération unique et sécurisée d'un code de liaison
+[] Enregistrement asynchrones des infos de connexion
+[] Création du pannel de gestion
