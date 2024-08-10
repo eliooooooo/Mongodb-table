@@ -10,5 +10,6 @@ Cette application **Javascript** doit permettre, grâce à un module ou un snipp
 L'inscription doit se faire depuis le **site internet** ou depuis l'**application web**. Depuis son espace d'utilisateur, un code avec clé **unique** sera généré.
 L'utilisateur devra partager l'url de son site ainsi qu'ajouter le bout de code.
 
-Psw : XFaMueZAdAwnpo53
-username : eliottburkle
+Psw : XFaMueZAdAwnpo53  
+username : eliottburkle  
+https://cloud.mongodb.com/v2/66b7a33b1192d71da2821c7c#/overview?automateSecurity=true
