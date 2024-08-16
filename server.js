@@ -13,22 +13,36 @@ let db_password = process.env.DB_PASSWORD;
 const app = express();
 app.use(express.json());
 
-app.get('/', (req, res) => {
-    res.send('Hello World');
+app.get('/movies', async (req, res) => {
+    try {
+        const movies = await Movie.find({});
+        res.status(200).json(movies);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
 });
 
-app.post('/movie', async (req, res) => {
+app.get('/movies/:id', async (req, res) => {
+    try {
+        const {id} = req.params;
+        const movie = await Movie.findById(id);
+        res.status(200).json(movie);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
+
+app.post('/movies', async (req, res) => {
     try {
         const movie = await Movie.create(req.body);
         res.status(200).json(movie);
     } catch (error) {
-        console.log(error.message);
         res.status(500).json({ message: error.message });
     }
 });
 
 // Connexion à la base de données MongoDB
-mongoose.connect(`mongodb+srv://${db_user}:${db_password}@mongotable.rbtmi.mongodb.net/?retryWrites=true&w=majority&appName=MongoTable`)
+mongoose.connect(`mongodb+srv://${db_user}:${db_password}@mongotable.rbtmi.mongodb.net/sample_mflix?retryWrites=true&w=majority&appName=MongoTable`)
 .then(() => {
     console.log('Connexion à la base de données réussie');
     // Démarrage du serveur
