@@ -1,6 +1,8 @@
-import express, { request } from 'express';
-import mongoose from 'mongoose';
-import dotenv from 'dotenv';
+const express = require('express');
+const mongoose = require('mongoose');
+const dotenv = require('dotenv');
+
+const Movie = require('./models/movieModel');
 
 // Récupération des crédentials de la bdd
 dotenv.config();
@@ -9,13 +11,20 @@ let db_password = process.env.DB_PASSWORD;
 
 // Création de l'application Express
 const app = express();
+app.use(express.json());
 
 app.get('/', (req, res) => {
     res.send('Hello World');
 });
 
-app.post('/movie', (req, res) => {
-    console.log(request.body);
+app.post('/movie', async (req, res) => {
+    try {
+        const movie = await Movie.create(req.body);
+        res.status(200).json(movie);
+    } catch (error) {
+        console.log(error.message);
+        res.status(500).json({ message: error.message });
+    }
 });
 
 // Connexion à la base de données MongoDB
