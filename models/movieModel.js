@@ -5,7 +5,7 @@ const movieSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    fullplot: {
+    plot: {
         type: String,
         required: true
     },

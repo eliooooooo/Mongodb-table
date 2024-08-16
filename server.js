@@ -12,6 +12,7 @@ let db_password = process.env.DB_PASSWORD;
 // Création de l'application Express
 const app = express();
 app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
 app.get('/movies', async (req, res) => {
     try {
@@ -35,6 +36,16 @@ app.get('/movies/:id', async (req, res) => {
 app.post('/movies', async (req, res) => {
     try {
         const movie = await Movie.create(req.body);
+        res.status(200).json(movie);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
+
+app.put('/movies/:id', async (req, res) => {
+    try {
+        const {id} = req.params;
+        const movie = await Movie.findByIdAndUpdate(id, req.body, { new: true });
         res.status(200).json(movie);
     } catch (error) {
         res.status(500).json({ message: error.message });
