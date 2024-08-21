@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 
@@ -11,12 +12,21 @@ let db_password = process.env.DB_PASSWORD;
 
 // Création de l'application Express
 const app = express();
+app.use(cors({
+    origin: '*',
+    methods: 'GET, POST, PUT, DELETE',
+    credentials: true
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.get('/movies', async (req, res) => {
     try {
-        const movies = await Movie.find({});
+        const page = parseInt(req.query.page) || 1; // Page par défaut à 1
+        const limit = parseInt(req.query.limit) || 10; // Limite par défaut à 10
+        const skip = (page - 1) * limit;
+
+        const movies = await Movie.find({}).limit(limit).skip(skip);
         res.status(200).json(movies);
     } catch (error) {
         res.status(500).json({ message: error.message });
