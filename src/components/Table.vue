@@ -1,3 +1,7 @@
+<script setup>
+
+</script>
+
 <template>
     <table>
         <thead>
@@ -23,6 +27,12 @@
 import axios from 'axios';
 
 export default {
+    props: {
+        currentPage: {
+            type: Number,
+            required: true
+        }
+    },
     data() {
         return {
             movies: []
@@ -35,7 +45,12 @@ export default {
         async fetchMovies() {
             try {
                 console.log('Fetching movies...');
-                const response = await axios.get('http://localhost:3000/movies');
+                let response;
+                if(this.currentPage > 1) {
+                    response = await axios.get(`http://localhost:3000/movies?page=${this.currentPage}`);
+                } else {
+                    response = await axios.get('http://localhost:3000/movies');
+                }
                 console.log('Movies fetched:', response.data);
                 this.movies = response.data;
             } catch (error) {
