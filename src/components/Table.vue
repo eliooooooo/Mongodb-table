@@ -5,7 +5,6 @@
                 <th scope="col">Title</th>
                 <th scope="col">Plot</th>
                 <th scope="col">Genres</th>
-                <th scope="col">Poster</th>
                 <th scope="col">Released</th>
             </tr>
         </thead>
@@ -14,7 +13,6 @@
                 <td>{{ movie.title }}</td>
                 <td>{{ movie.plot }}</td>
                 <td>{{ movie.genres.join(', ') }}</td>
-                <td><img :src="movie.poster" alt="Poster"></td>
                 <td>{{ movie.released }}</td>
             </tr>
         </tbody>

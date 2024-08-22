@@ -13,10 +13,6 @@ const movieSchema = new mongoose.Schema({
         type: [String],
         required: true
     },
-    poster: {
-        type: String,
-        required: false
-    },
     released: {
         type: Date,
         required: true
