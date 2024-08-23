@@ -23,7 +23,7 @@ app.use(express.urlencoded({ extended: false }));
 app.get('/movies', async (req, res) => {
     try {
         const page = parseInt(req.query.page) || 1; // Page par défaut à 1
-        const limit = parseInt(req.query.limit) || 10; // Limite par défaut à 10
+        const limit = 10; // Limite par défaut à 10
         const skip = (page - 1) * limit;
 
         const movies = await Movie.find({}).limit(limit).skip(skip);
