@@ -19,11 +19,38 @@
 
 <template>
     <div>
-        <button @click="previousPage">Previous</button>
+        <button :disabled="currentPage === 1" @click="previousPage">Previous</button>
         <span>Page {{ currentPage }}</span>
         <button @click="nextPage">Next</button>
     </div>
 </template>
 
-<script>
-</script>
+<style scoped>
+    div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    button {
+        padding: 0.5rem 1rem;
+        border: 1px solid #ccc;
+        border-radius: 0.25rem;
+        background-color: #fff;
+        color: #333;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+
+    button:disabled {
+        border: none;
+        background-color: #333;
+        color: #585858;
+        cursor: not-allowed;
+    }
+
+    button:hover {
+        background-color: #9e9e9e;
+    }
+</style>
