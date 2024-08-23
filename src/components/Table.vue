@@ -6,18 +6,20 @@
     <table>
         <thead>
             <tr>
-                <th scope="col">Title</th>
+                <th scope="col" class="little">Title</th>
                 <th scope="col">Plot</th>
-                <th scope="col">Genres</th>
-                <th scope="col">Released</th>
+                <th scope="col" class="little">Genres</th>
+                <th scope="col" class="little">Released</th>
+                <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
             <tr v-for="movie in movies" :key="movie._id">
-                <td>{{ movie.title }}</td>
+                <td class="little">{{ movie.title }}</td>
                 <td>{{ movie.plot }}</td>
-                <td>{{ movie.genres.join(', ') }}</td>
-                <td>{{ movie.released }}</td>
+                <td class="little">{{ movie.genres.join(', ') }}</td>
+                <td class="little">{{ movie.released }}</td>
+                <td><a :href="`/movie/${movie._id}`">Details</a></td>
             </tr>
         </tbody>
     </table>
@@ -61,4 +63,26 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        border: 1px solid #ccc;
+        margin-bottom: 40px;
+    }
+
+    td {
+        border: 1px solid #ccc;
+        padding: 0.5rem;
+    }
+
+    .little {
+        width: 15%;
+    }
+
+    th{
+        background-color: #f2f2f2;
+        color: #333;
+        padding: 0.5rem;
+    }
+</style>
