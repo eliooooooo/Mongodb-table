@@ -15,7 +15,7 @@ let currentPage = params.get("page") ? parseInt(params.get("page"), 10) : 1;
     <nav>
       <router-link to="/list/1">Home</router-link>
     </nav>
-    <h1>Liste des films</h1>
+    <h1>MongoDB Table</h1>
     <router-view></router-view>
   </div>
 </template>
