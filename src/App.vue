@@ -1,4 +1,6 @@
 <script setup>
+import router from './router';
+
 import Table from './components/Table.vue';
 import Pagination from './components/Pagination.vue';
 
@@ -10,9 +12,11 @@ let currentPage = params.get("page") ? parseInt(params.get("page"), 10) : 1;
 
 <template>
   <div>
+    <nav>
+      <router-link to="/list/1">Home</router-link>
+    </nav>
     <h1>Liste des films</h1>
-    <Table :currentPage="currentPage"></Table>
-    <Pagination :currentPage="currentPage"></Pagination>
+    <router-view></router-view>
   </div>
 </template>
 
