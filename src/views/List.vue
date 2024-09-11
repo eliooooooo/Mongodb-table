@@ -30,6 +30,7 @@ watch(() => route.params.page, (newPage) => {
 
 <template>
     <div>
+        <h1>Movies content</h1>
         <Table :data="data"></Table>
         <Pagination :page="Number(page)"></Pagination>
     </div>
