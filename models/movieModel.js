@@ -17,6 +17,14 @@ const movieSchema = new mongoose.Schema({
         type: Date,
         required: true
     },
+    poster: {
+        type: String,
+        required: true
+    },
+    fullplot: {
+        type: String,
+        required: true
+    },
 });
 
 const Movie = mongoose.model('Movie', movieSchema);
